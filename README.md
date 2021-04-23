@@ -2,7 +2,7 @@
 
 The requirements of the project are `numpy`, `torch`, and `curtsies`.
 
-The datasets to train the project are located here. `hands_25.npy` contains all 25000 images (25 emojis at 1000 images each). `hands_10.npy` contains the first 10000 images, noted by the commented `OUTPUTS` list at the beginning of `cnn.py`.
+The datasets to train the project are located [here](https://drive.google.com/drive/folders/1YyDxLdjyIR0IMG7zHDhRqLmUxXuaX7uJ?usp=sharing). `hands_25.npy` contains all 25000 images (25 emojis at 1000 images each). `hands_10.npy` contains the first 10000 images, noted by the commented `OUTPUTS` list at the beginning of `cnn.py`.
 
 After training, test the network with an image in the working directory.
 
