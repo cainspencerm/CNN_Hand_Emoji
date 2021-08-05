@@ -15,6 +15,33 @@ import torch.optim as optim
 import time
 
 
+#OUTPUTS = ['backhand_index_pointing_down',
+#           'backhand_index_pointing_right',
+#           'backhand_index_pointing_up',
+#           'call_me_hand',
+#           'crossed_fingers',
+#           'flexed_bicep',
+#           'hand_with_fingers_splayed',
+#           'index_pointing_up',
+#           'left_facing_fist',
+#           'love-you_gesture',
+#           'middle_finger',
+#           'ok_hand',
+#           'oncoming_fist',
+#           'pinched_fingers'
+#           'pinching_hand',
+#           'raised_back_of_hand',
+#           'raised_fist',
+#           'raised_hand',
+#           'right_facing_fist',
+#           'sign_of_the_horns',
+#           'thumbs_down',
+#           'thumbs_up',
+#           'victory_hand',
+#           'vulcan_salute',
+#           'waving_hand']
+
+TRAINING_DATA = 'hands_10.npy'
 OUTPUTS = ['backhand_index_pointing_down',
            'backhand_index_pointing_right',
            'backhand_index_pointing_up',
@@ -24,33 +51,7 @@ OUTPUTS = ['backhand_index_pointing_down',
            'hand_with_fingers_splayed',
            'index_pointing_up',
            'left_facing_fist',
-           'love-you_gesture',
-           'middle_finger',
-           'ok_hand',
-           'oncoming_fist',
-           'pinched_fingers'
-           'pinching_hand',
-           'raised_back_of_hand',
-           'raised_fist',
-           'raised_hand',
-           'right_facing_fist',
-           'sign_of_the_horns',
-           'thumbs_down',
-           'thumbs_up',
-           'victory_hand',
-           'vulcan_salute',
-           'waving_hand']
-
-# OUTPUTS = ['backhand_index_pointing_down',
-#            'backhand_index_pointing_right',
-#            'backhand_index_pointing_up',
-#            'call_me_hand',
-#            'crossed_fingers',
-#            'flexed_bicep',
-#            'hand_with_fingers_splayed',
-#            'index_pointing_up',
-#            'left_facing_fist',
-#            'love-you_gesture']
+           'love-you_gesture']
 
 DEVICE = 'cuda:0'
 
@@ -169,7 +170,7 @@ def train(net, loss_function, optimizer, train_x, train_y, test_x, test_y):
 
 
 def loadTrainingData():
-    training_data = np.load("hands_25.npy", allow_pickle=True)
+    training_data = np.load(TRAINING_DATA, allow_pickle=True)
     np.random.shuffle(training_data)
 
     x = torch.Tensor([i[0] for i in training_data]).view(-1, IMAGE_SIZE_X, IMAGE_SIZE_Y)
@@ -255,7 +256,6 @@ def main():
     optimizer = optim.Adam(net.parameters(), lr=.00001)
 
     train_x, train_y, test_x, test_y = loadTrainingData()
-    print(test_y)
     print(blue('begin training'))
     train(net, loss_function, optimizer, train_x, train_y, test_x, test_y)
 
